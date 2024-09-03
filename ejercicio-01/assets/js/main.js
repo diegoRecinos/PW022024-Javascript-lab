@@ -7,13 +7,17 @@
     //Code
 //}
 
-
+//metodo para filtrar los datos
+var newArray = arr.filter(callback(currentValue[, index[, array]])[, thisArg])
+arr.filter()
+//metodo para recorrer todos los elementos del array list 
+//numeros.forEach(numero => console.log(numero));
 
 //hecho
 const countVotes = (votos) => {
 
     let resultado = [];
-
+    votos.array.forEach()
     votos.array.forEach(voto => {
         resultado[voto.candidate]=(resultado[voto.candidate]||0) + 1;
     });
