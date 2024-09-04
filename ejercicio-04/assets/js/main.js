@@ -1,49 +1,47 @@
-//crear funcion que devolvera    otra funcion que
-// incrementa  y retorna el valor de un contador interno
-
 const createCounter = () => {
+    let count = 0;              //initialize the counter
+    return () => {
+        return count++;         //returns a function that returns a counter +1 for the variable 
+    };
+};
+
+
+const showCounter = (counterFunction, limit) => {   //Displays the counter value in alerts from 0 to limit
     
+    for (let i = 0; i <= limit; i++) {
+        alert(counterFunction()); // we iterate over the alert with its dynamic input to show a different number everytime
+    }
 
+};
+
+
+const requestNumber = () => {
+    let num;
     
-    //Code
-}
-
-const showCounter = (/*recibe*/) => {
-    //Code
-}
-
-const requestNumber=()=>{
-    let input = prompt("Ingrese un numero entero positivo hasta el cual desee contar");
-    let number = `Numero: ${input}`;
-
-
-//existe isNaN que valida cuando es un string un ejemplo seria así:
-
-    document.getElementById('btn').addEventListener('click', function(){
-  	while(true){
-  	let num = prompt('porfavor ingrese un numero');
-
-
-/*
-!isNaN(num) = si es diferente de un string osea true
-hasta que sea insertado un numero terminará el ciclo o hasta que se escriba fin
-*/
-  	if(!isNaN(num) && num != null && num != "" && num >= 0){
-  		alert('numero valido');
-    	break;
-  	}else if(num == 'fin'){
-  		break;
-  	}else{
-  		alert('no es numero');
-    	continue;
-  	}
-  }
- 
-  });
-}
+     num = prompt('Ingrese un numero entero no negativo hasta el cual desee contar');
+        
+    if (!isNaN(num) && num !== null && num !== '' && Number(num) >= 0) {  //checks if the number is an positive integer and not a string 
+        return Number(num);
+    } else if (num == 'fin') {
+        return null;
+    } else {
+        alert('Por favor, ingrese un numero valido.');
+    }
+    
+};
 
 const main = () => {
-   requestNumber();
-}
 
-main();
+    const limit = requestNumber();  //saves the propmt input into a varible that will not change
+
+    if (limit !== null) {                   //if the input isnt null we can start and create a counter
+        const counter = createCounter();    //now the function showcounter has the dynamic alert for it to 
+        showCounter(counter, limit);        //display the number the counter is currently on, and we need to 
+                                            //pass the limit for it to stop
+    } else {
+        alert('Proceso terminado.');
+    }
+};
+
+
+main();  //execute program
